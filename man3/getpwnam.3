@@ -206,10 +206,18 @@ structure.
 .TP
 .B ERANGE
 Insufficient buffer space supplied.
+.SH NOTE
+The user password database mostly refers to \fI/etc/passwd\fP.
+However, with recent systems it also refers to network wide databases
+using NIS, LDAP and other local files as configured in
+\fI/etc/nsswitch.conf\fP.
 .SH FILES
 .TP
 .I /etc/passwd
 local password database file
+.TP
+.I /etc/nsswitch.conf
+System Databases and Name Service Switch configuration file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -347,4 +355,5 @@ main(int argc, char *argv[])
 .BR getspnam (3),
 .BR putpwent (3),
 .BR setpwent (3),
+.BR nsswitch.conf (5),
 .BR passwd (5)
