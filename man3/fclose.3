@@ -58,6 +58,16 @@ function flushes the stream pointed to by
 (writing any buffered output data using
 .BR fflush (3))
 and closes the underlying file descriptor.
+.\" Reviewed by upstream and rejected, May 2012, Debian#67239
+.PP
+The behaviour of
+.BR fclose ()
+is undefined if the
+.I stream
+parameter is an illegal pointer, or is a descriptor already passed
+to a previous invocation of
+.BR fclose ().
+.\" End of patch
 .SH RETURN VALUE
 Upon successful completion, 0 is returned.
 Otherwise,
