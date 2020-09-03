@@ -353,13 +353,13 @@ main(void)
 
     STAILQ_INIT(&head);                     /* Initialize the queue */
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the head */
+    n1 = malloc(sizeof(struct *n1));    /* Insert at the head */
     STAILQ_INSERT_HEAD(&head, n1, entries);
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the tail */
+    n1 = malloc(sizeof(struct *n1));    /* Insert at the tail */
     STAILQ_INSERT_TAIL(&head, n1, entries);
 
-    n2 = malloc(sizeof(struct entry));      /* Insert after */
+    n2 = malloc(sizeof(struct *n2));    /* Insert after */
     STAILQ_INSERT_AFTER(&head, n1, n2, entries);
 
     STAILQ_REMOVE(&head, n2, entry, entries); /* Deletion */
@@ -372,7 +372,7 @@ main(void)
     n1 = STAILQ_FIRST(&head);
     n1\->data = 0;
     for (int i = 1; i < 5; i++) {
-        n1 = malloc(sizeof(struct entry));
+        n1 = malloc(sizeof(struct *n1));
         STAILQ_INSERT_HEAD(&head, n1, entries);
         n1\->data = i;
     }

@@ -292,13 +292,13 @@ main(void)
 
     LIST_INIT(&head);                       /* Initialize the list */
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the head */
+    n1 = malloc(sizeof(struct *n1));        /* Insert at the head */
     LIST_INSERT_HEAD(&head, n1, entries);
 
-    n2 = malloc(sizeof(struct entry));      /* Insert after */
+    n2 = malloc(sizeof(struct *n2));        /* Insert after */
     LIST_INSERT_AFTER(n1, n2, entries);
 
-    n3 = malloc(sizeof(struct entry));      /* Insert before */
+    n3 = malloc(sizeof(struct *n3));        /* Insert before */
     LIST_INSERT_BEFORE(n2, n3, entries);
 
     i = 0;                                  /* Forward traversal */

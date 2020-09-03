@@ -700,8 +700,8 @@ main(int argc, char *argv[])
     printf("timer started\en");
 
     for (tot_exp = 0; tot_exp < max_exp;) {
-        s = read(fd, &exp, sizeof(uint64_t));
-        if (s != sizeof(uint64_t))
+        s = read(fd, &exp, sizeof(exp));
+        if (s != sizeof(exp))
             handle_error("read");
 
         tot_exp += exp;

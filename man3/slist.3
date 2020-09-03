@@ -300,10 +300,10 @@ main(void)
 
     SLIST_INIT(&head);                      /* Initialize the queue */
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the head */
+    n1 = malloc(sizeof(struct *n1));        /* Insert at the head */
     SLIST_INSERT_HEAD(&head, n1, entries);
 
-    n2 = malloc(sizeof(struct entry));      /* Insert after */
+    n2 = malloc(sizeof(struct *n2));        /* Insert after */
     SLIST_INSERT_AFTER(n1, n2, entries);
 
     SLIST_REMOVE(&head, n2, entry, entries);/* Deletion */
@@ -314,7 +314,7 @@ main(void)
     free(n3);
 
     for (int i = 0; i < 5; i++) {
-        n1 = malloc(sizeof(struct entry));
+        n1 = malloc(sizeof(struct *n1));
         SLIST_INSERT_HEAD(&head, n1, entries);
         n1\->data = i;
     }

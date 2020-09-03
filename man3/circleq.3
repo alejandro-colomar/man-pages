@@ -301,16 +301,16 @@ main(void)
 
     CIRCLEQ_INIT(&head);                    /* Initialize the queue */
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the head */
+    n1 = malloc(sizeof(struct *n1));        /* Insert at the head */
     CIRCLEQ_INSERT_HEAD(&head, n1, entries);
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the tail */
+    n1 = malloc(sizeof(struct *n1));        /* Insert at the tail */
     CIRCLEQ_INSERT_TAIL(&head, n1, entries);
 
-    n2 = malloc(sizeof(struct entry));      /* Insert after */
+    n2 = malloc(sizeof(struct *n2));        /* Insert after */
     CIRCLEQ_INSERT_AFTER(&head, n1, n2, entries);
 
-    n3 = malloc(sizeof(struct entry));      /* Insert before */
+    n3 = malloc(sizeof(struct *n3));        /* Insert before */
     CIRCLEQ_INSERT_BEFORE(&head, n2, n3, entries);
 
     CIRCLEQ_REMOVE(&head, n2, entries);     /* Deletion */

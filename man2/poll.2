@@ -595,7 +595,7 @@ main(int argc, char *argv[])
     }
 
     num_open_fds = nfds = argc \- 1;
-    pfds = calloc(nfds, sizeof(struct pollfd));
+    pfds = calloc(nfds, sizeof(*pfds));
     if (pfds == NULL)
         errExit("malloc");
 

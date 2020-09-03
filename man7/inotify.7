@@ -1029,7 +1029,7 @@ main(int argc, char* argv[])
 
     /* Allocate memory for watch descriptors. */
 
-    wd = calloc(argc, sizeof(int));
+    wd = calloc(argc, sizeof(*wd));
     if (wd == NULL) {
         perror("calloc");
         exit(EXIT_FAILURE);

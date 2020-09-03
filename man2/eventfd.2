@@ -422,8 +422,8 @@ main(int argc, char *argv[])
             printf("Child writing %s to efd\en", argv[j]);
             u = strtoull(argv[j], NULL, 0);
                     /* strtoull() allows various bases */
-            s = write(efd, &u, sizeof(uint64_t));
-            if (s != sizeof(uint64_t))
+            s = write(efd, &u, sizeof(u));
+            if (s != sizeof(u))
                 handle_error("write");
         }
         printf("Child completed write loop\en");
@@ -434,8 +434,8 @@ main(int argc, char *argv[])
         sleep(2);
 
         printf("Parent about to read\en");
-        s = read(efd, &u, sizeof(uint64_t));
-        if (s != sizeof(uint64_t))
+        s = read(efd, &u, sizeof(u));
+        if (s != sizeof(u))
             handle_error("read");
         printf("Parent read %"PRIu64" (%#"PRIx64") from efd\en", u, u);
         exit(EXIT_SUCCESS);

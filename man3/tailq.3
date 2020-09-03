@@ -378,16 +378,16 @@ main(void)
 
     TAILQ_INIT(&head);                      /* Initialize the queue */
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the head */
+    n1 = malloc(sizeof(struct *n1));        /* Insert at the head */
     TAILQ_INSERT_HEAD(&head, n1, entries);
 
-    n1 = malloc(sizeof(struct entry));      /* Insert at the tail */
+    n1 = malloc(sizeof(struct *n1));        /* Insert at the tail */
     TAILQ_INSERT_TAIL(&head, n1, entries);
 
-    n2 = malloc(sizeof(struct entry));      /* Insert after */
+    n2 = malloc(sizeof(struct *n2));        /* Insert after */
     TAILQ_INSERT_AFTER(&head, n1, n2, entries);
 
-    n3 = malloc(sizeof(struct entry));      /* Insert before */
+    n3 = malloc(sizeof(struct *n3));        /* Insert before */
     TAILQ_INSERT_BEFORE(n2, n3, entries);
 
     TAILQ_REMOVE(&head, n2, entries);       /* Deletion */
