@@ -149,6 +149,7 @@ htobe32(x.u32) = 0x11223344
 \&
 .EX
 #include <endian.h>
+#include <inttypes.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -166,9 +167,9 @@ main(int argc, char *argv[])
     x.arr[2] = 0x33;
     x.arr[3] = 0x44;	/* Highest\-address byte */
 
-    printf("x.u32 = %#x\en", x.u32);
-    printf("htole32(x.u32) = %#x\en", htole32(x.u32));
-    printf("htobe32(x.u32) = %#x\en", htobe32(x.u32));
+    printf("x.u32 = %#"PRIx32"\en", x.u32);
+    printf("htole32(x.u32) = %#"PRIx32"\en", htole32(x.u32));
+    printf("htobe32(x.u32) = %#"PRIx32"\en", htobe32(x.u32));
 
     exit(EXIT_SUCCESS);
 }

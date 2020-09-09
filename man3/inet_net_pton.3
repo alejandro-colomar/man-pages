@@ -325,6 +325,7 @@ Raw address:              c1a80180
 /* Link with "\-lresolv" */
 
 #include <arpa/inet.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -374,7 +375,7 @@ main(int argc, char *argv[])
        may not have been touched by inet_net_ntop(), and so will still
        have any initial value that was specified in argv[2]. */
 
-    printf("Raw address:              %x\en", htonl(addr.s_addr));
+    printf("Raw address:              %"PRIx32"\en", htonl(addr.s_addr));
 
     exit(EXIT_SUCCESS);
 }
