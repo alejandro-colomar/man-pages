@@ -28,6 +28,44 @@
 .SH NAME
 system_data_types \- overview of system data types
 .SH DESCRIPTION
+.\"------------------------------------- __int128 ---------------------/
+.TP
+.I __int128
+.RS
+.RI [ signed ]
+.I __int128
+.PP
+A signed integer type
+of a fixed width of exactly 128 bits.
+.PP
+When using GCC,
+it is supported only for targets where
+the compiler is able to generate efficient code for 128-bit arithmetic.
+.PP
+Versions:
+GCC 4.6.0 and later.
+.PP
+Conforming to:
+This is a non-standard extension, present in GCC.
+It is not standardized by the C language standard nor POSIX.
+.PP
+Notes:
+This type is available without including any header.
+.PP
+Bugs:
+It is not possible to express an integer constant of type
+.I __int128
+in implementations where
+.I long long
+is less than 128 bits wide.
+.PP
+See also the
+.IR intmax_t ,
+.IR int N _t
+and
+.I unsigned __int128
+types in this page.
+.RE
 .\"------------------------------------- aiocb ------------------------/
 .TP
 .I aiocb
@@ -255,6 +293,45 @@ the
 .I float_t
 type in this page.
 .RE
+.\"------------------------------------- error_t ----------------------/
+.TP
+.I error_t
+.RS
+Include:
+.IR <argz.h> ,
+or
+.IR <envz.h> .
+Alternatively,
+.IR <errno.h> .
+.PP
+An integer type
+used for error reporting.
+A value of 0 means success, and nonzero means failure.
+Portable programs should use
+.I int
+instead.
+.PP
+Conforming to:
+Present in glibc.
+It is not standardized by the C language standard nor POSIX.
+.PP
+Notes:
+C11 standardized a similar type as an optional extension:
+.IR errno_t .
+However,
+.I errno_t
+is not present in POSIX.
+.PP
+.I <errno.h>
+defines this type if the macro
+.B _GNU_SOURCE
+is defined before including the header.
+.PP
+See also:
+.BR argz_add (3),
+.BR envz_add (3),
+.BR feature_test_macros (7)
+.RE
 .\"------------------------------------- fd_set -----------------------/
 .TP
 .I fd_set
@@ -457,6 +534,155 @@ C99 and later; POSIX.1-2001 and later.
 .PP
 .IR "See also" :
 .BR imaxdiv (3)
+.RE
+.\"------------------------------------- int_fastN_t ------------------/
+.TP
+.IR int_fast N _t
+.RS
+Include:
+.IR <stdint.h> .
+Alternatively,
+.IR <inttypes.h> .
+.PP
+.IR int_fast8_t ,
+.IR int_fast16_t ,
+.IR int_fast32_t ,
+.I int_fast64_t
+.PP
+Usually the fastest (see Notes) signed integer type
+of a width of at least N bits,
+N being the value specified in its type name.
+According to the C language standard, they shall be
+capable of storing values in the range
+.RB [ INT_FAST N _MIN ,
+.BR INT_FAST N _MAX ],
+substituting N by the appropriate number.
+.PP
+The length modifiers for the
+.IR int_fast N _t
+types for the
+.BR printf (3)
+family of functions
+are expanded by macros of the forms
+.BR PRIdFAST N
+and
+.BR PRIiFAST N
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"PRIdFAST64"
+or
+.B %"PRIiFAST64"
+for printing
+.I int_fast64_t
+values.
+The length modifiers for the
+.IR int_fast N _t
+types for the
+.BR scanf (3)
+family of functions
+are expanded by macros of the forms
+.BR SCNdFAST N
+and
+.BR SCNiFAST N,
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"SCNdFAST8"
+or
+.B %"SCNiFAST8"
+for scanning
+.I int_fast8_t
+values.
+.PP
+Conforming to:
+C99 and later; POSIX.1-2001 and later.
+.PP
+Notes:
+Where there is no single type that is fastest for all purposes,
+the implementation may choose any type
+with the required signedness and at least the minimum width.
+.PP
+See also the
+.IR int_least N _t ,
+.IR int N _t ,
+.IR uint_fast N _t ,
+.IR uint_least N _t
+and
+.IR uint N _t
+types in this page.
+.RE
+.\"------------------------------------- int_leastN_t -----------------/
+.TP
+.IR int_least N _t
+.RS
+Include:
+.IR <stdint.h> .
+Alternatively,
+.IR <inttypes.h> .
+.PP
+.IR int_least8_t ,
+.IR int_least16_t ,
+.IR int_least32_t ,
+.I int_least64_t
+.PP
+The narrowest signed integer type
+of a width of at least N bits,
+N being the value specified in its type name.
+According to the C language standard, they shall be
+capable of storing values in the range
+.RB [ INT_LEAST N _MIN ,
+.BR INT_LEAST N _MAX ],
+substituting N by the appropriate number.
+.PP
+The length modifiers for the
+.IR int_least N _t
+types for the
+.BR printf (3)
+family of functions
+are expanded by macros of the forms
+.BR PRIdLEAST N
+and
+.BR PRIiLEAST N
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"PRIdLEAST64"
+or
+.B %"PRIiLEAST64"
+for printing
+.I int_least64_t
+values.
+The length modifiers for the
+.IR int_least N _t
+types for the
+.BR scanf (3)
+family of functions
+are expanded by macros of the forms
+.BR SCNdLEAST N
+and
+.BR SCNiLEAST N,
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"SCNdLEAST8"
+or
+.B %"SCNiLEAST8"
+for scanning
+.I int_least8_t
+values.
+.PP
+Conforming to:
+C99 and later; POSIX.1-2001 and later.
+.PP
+See also the
+.IR int_fast N _t ,
+.IR int N _t ,
+.IR uint_fast N _t ,
+.IR uint_least N _t
+and
+.IR uint N _t
+types in this page.
 .RE
 .\"------------------------------------- intmax_t ---------------------/
 .TP
@@ -787,6 +1013,30 @@ POSIX.1-2001 and later.
 .BR open (2),
 .BR stat (2),
 .BR umask (2)
+.\"------------------------------------- loff_t -----------------------/
+.TP
+.I loff_t
+.RS
+.IR Include :
+.IR <sys/types.h> .
+.PP
+Used for file sizes.
+It is a 64-bit signed integer type.
+.PP
+.IR "Conforming to" :
+Present in glibc.
+It is not standardized by the C language standard nor POSIX.
+.PP
+.IR "See also" :
+.BR copy_file_range (2),
+.BR llseek (2),
+.BR splice (2)
+.PP
+See also the
+.I off64_t
+and
+.I off_t
+types in this page.
 .RE
 .\"------------------------------------- off64_t ----------------------/
 .TP
@@ -815,10 +1065,10 @@ has to be defined for this type to be available.
 .BR feature_test_macros (7)
 .PP
 See also the
-.\" .I loff_t
-.\" and
+.I loff_t
+and
 .I off_t
-type in this page.
+types in this page.
 .RE
 .\"------------------------------------- off_t ------------------------/
 .TP
@@ -871,10 +1121,10 @@ the width of this type can be controlled with the feature test macro
 .BR feature_test_macros (7)
 .PP
 See also the
-.\" .I loff_t
-.\" and
+.I loff_t
+and
 .I off64_t
-type in this page.
+types in this page.
 .RE
 .\"------------------------------------- pid_t ------------------------/
 .TP
@@ -1602,6 +1852,161 @@ POSIX.1-2001 and later.
 .BR getpwnam (3),
 .BR credentials (7)
 .RE
+.\"------------------------------------- uint_fastN_t -----------------/
+.TP
+.IR uint_fast N _t
+.RS
+Include:
+.IR <stdint.h> .
+Alternatively,
+.IR <inttypes.h> .
+.PP
+.IR uint_fast8_t ,
+.IR uint_fast16_t ,
+.IR uint_fast32_t ,
+.I uint_fast64_t
+.PP
+Usually the fastest (see Notes) unsigned integer type
+of a width of at least N bits,
+N being the value specified in its type name.
+According to the C language standard, they shall be
+capable of storing values in the range [0,
+.BR UINT_FAST N _MAX ],
+substituting N by the appropriate number.
+.PP
+The length modifiers for the
+.IR uint_fast N _t
+types for the
+.BR printf (3)
+family of functions
+are expanded by macros of the forms
+.BR PRIuFAST N,
+.BR PRIoFAST N,
+.BR PRIxFAST N
+and
+.BR PRIXFAST N
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"PRIuFAST32"
+or
+.B %"PRIxFAST32"
+for printing
+.I uint_fast32_t
+values.
+The length modifiers for the
+.IR uint_fast N _t
+types for the
+.BR scanf (3)
+family of functions
+are expanded by macros of the forms
+.BR SCNuFAST N,
+.BR SCNoFAST N,
+.BR SCNxFAST N
+and
+.BR SCNXFAST N
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"SCNuFAST16"
+or
+.B %"SCNxFAST16"
+for scanning
+.I uint_fast16_t
+values.
+.PP
+Conforming to:
+C99 and later; POSIX.1-2001 and later.
+.PP
+Notes:
+Where there is no single type that is fastest for all purposes,
+the implementation may choose any type
+with the required signedness and at least the minimum width.
+.PP
+See also the
+.IR int_fast N _t ,
+.IR int_least N _t ,
+.IR int N _t ,
+.IR uint_least N _t
+and
+.IR uint N _t
+types in this page.
+.RE
+.\"------------------------------------- uint_leastN_t ----------------/
+.TP
+.IR uint_least N _t
+.RS
+Include:
+.IR <stdint.h> .
+Alternatively,
+.IR <inttypes.h> .
+.PP
+.IR uint_least8_t ,
+.IR uint_least16_t ,
+.IR uint_least32_t ,
+.I uint_least64_t
+.PP
+The narrowest unsigned integer type
+of a width of at least N bits,
+N being the value specified in its type name.
+According to the C language standard, they shall be
+capable of storing values in the range [0,
+.BR UINT_LEAST N _MAX ],
+substituting N by the appropriate number.
+.PP
+The length modifiers for the
+.IR uint_least N _t
+types for the
+.BR printf (3)
+family of functions
+are expanded by macros of the forms
+.BR PRIuLEST N,
+.BR PRIoLEAST N,
+.BR PRIxLEAST N
+and
+.BR PRIXLEAST N
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"PRIuLEAST32"
+or
+.B %"PRIxLEAST32"
+for printing
+.I uint_least32_t
+values.
+The length modifiers for the
+.IR uint_least N _t
+types for the
+.BR scanf (3)
+family of functions
+are expanded by macros of the forms
+.BR SCNuLEAST N,
+.BR SCNoLEAST N,
+.BR SCNxLEAST N
+and
+.BR SCNXLEAST N
+(defined in
+.IR <inttypes.h> );
+resulting for example in
+.B %"SCNuLEAST16"
+or
+.B %"SCNxLEAST16"
+for scanning
+.I uint_least16_t
+values.
+.PP
+Conforming to:
+C99 and later; POSIX.1-2001 and later.
+.PP
+See also the
+.IR int_fast N _t ,
+.IR int_least N _t ,
+.IR int N _t ,
+.IR uint_fast N _t
+and
+.IR uint N _t
+types in this page.
+.RE
 .\"------------------------------------- uintmax_t --------------------/
 .TP
 .I uintmax_t
@@ -1809,6 +2214,41 @@ the
 .I intptr_t
 and
 .I void *
+types in this page.
+.RE
+.\"------------------------------------- unsigned __int128 ------------/
+.TP
+.I unsigned __int128
+.RS
+An unsigned integer type
+of a fixed width of exactly 128 bits.
+.PP
+When using GCC,
+it is supported only for targets where
+the compiler is able to generate efficient code for 128-bit arithmetic.
+.PP
+Versions:
+GCC 4.6.0 and later.
+.PP
+Conforming to:
+This is a non-standard extension, present in GCC.
+It is not standardized by the C language standard nor POSIX.
+.PP
+Notes:
+This type is available without including any header.
+.PP
+Bugs:
+It is not possible to express an integer constant of type
+.I unsigned __int128
+in implementations where
+.I unsigned long long
+is less than 128 bits wide.
+.PP
+See also the
+.IR __int128 ,
+.I uintmax_t
+and
+.IR uint N _t
 types in this page.
 .RE
 .\"------------------------------------- va_list ----------------------/
