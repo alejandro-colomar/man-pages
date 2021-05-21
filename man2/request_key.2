@@ -12,17 +12,17 @@
 .TH REQUEST_KEY 2 2021-03-22 Linux "Linux Key Management Calls"
 .SH NAME
 request_key \- request a key from the kernel's key management facility
+.SH LIBRARY
+libkeyutils
+.RI ( libkeyutils ", " -lkeyutils )
 .SH SYNOPSIS
 .nf
 .B #include <keyutils.h>
 .PP
 .BI "key_serial_t request_key(const char *" type ", const char *" description ,
 .BI "                         const char *" callout_info ,
-.BI "                         key_serial_t " dest_keyring ");"
+.BI "                         key_serial_t " dest_keyring );
 .fi
-.PP
-.IR Note :
-There is no glibc wrapper for this system call; see NOTES.
 .SH DESCRIPTION
 .BR request_key ()
 attempts to find a key of the given
@@ -437,13 +437,6 @@ The ability to instantiate keys upon request was added
 in Linux 2.6.13.
 .SH CONFORMING TO
 This system call is a nonstandard Linux extension.
-.SH NOTES
-Glibc does not provide a wrapper for this system call.
-A wrapper is provided in the
-.IR libkeyutils
-package.
-When employing the wrapper in that library, link with
-.IR \-lkeyutils .
 .SH EXAMPLES
 The program below demonstrates the use of
 .BR request_key ().
