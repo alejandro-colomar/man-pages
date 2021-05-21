@@ -9,6 +9,9 @@
 .TH GAMMA 3 2021-03-22 "GNU" "Linux Programmer's Manual"
 .SH NAME
 gamma, gammaf, gammal \- (logarithm of the) gamma function
+.SH LIBRARY
+glibc - math library
+.RI ( libm ", " -lm )
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
@@ -17,8 +20,6 @@ gamma, gammaf, gammal \- (logarithm of the) gamma function
 .BI "float gammaf(float " x ");"
 .BI "long double gammal(long double " x ");"
 .fi
-.PP
-Link with \fI\-lm\fP.
 .PP
 .RS -4
 Feature Test Macro Requirements for glibc (see
