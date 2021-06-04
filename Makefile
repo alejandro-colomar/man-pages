@@ -120,6 +120,7 @@ clean:
 
 MANPAGES   := $(sort $(shell find $(MANDIR)/man?/ -type f | grep '$(manext)$$'))
 _manpages  := $(patsubst $(MANDIR)/%,$(DESTDIR)$(mandir)/%,$(MANPAGES))
+
 _man1pages := $(filter %$(man1ext),$(_manpages))
 _man2pages := $(filter %$(man2ext),$(_manpages))
 _man3pages := $(filter %$(man3ext),$(_manpages))
@@ -129,8 +130,18 @@ _man6pages := $(filter %$(man6ext),$(_manpages))
 _man7pages := $(filter %$(man7ext),$(_manpages))
 _man8pages := $(filter %$(man8ext),$(_manpages))
 
+_man1pages_rm := $(addsuffix -rm,$(wildcard $(_man1pages)))
+_man2pages_rm := $(addsuffix -rm,$(wildcard $(_man2pages)))
+_man3pages_rm := $(addsuffix -rm,$(wildcard $(_man3pages)))
+_man4pages_rm := $(addsuffix -rm,$(wildcard $(_man4pages)))
+_man5pages_rm := $(addsuffix -rm,$(wildcard $(_man5pages)))
+_man6pages_rm := $(addsuffix -rm,$(wildcard $(_man6pages)))
+_man7pages_rm := $(addsuffix -rm,$(wildcard $(_man7pages)))
+_man8pages_rm := $(addsuffix -rm,$(wildcard $(_man8pages)))
+
 MANDIRS  := $(sort $(shell find $(MANDIR)/man? -type d))
 _mandirs := $(patsubst $(MANDIR)/%,$(DESTDIR)$(mandir)/%/.,$(MANDIRS))
+
 _man1dir := $(filter %man1/.,$(_mandirs))
 _man2dir := $(filter %man2/.,$(_mandirs))
 _man3dir := $(filter %man3/.,$(_mandirs))
@@ -140,16 +151,6 @@ _man6dir := $(filter %man6/.,$(_mandirs))
 _man7dir := $(filter %man7/.,$(_mandirs))
 _man8dir := $(filter %man8/.,$(_mandirs))
 _mandir  := $(DESTDIR)$(mandir)/.
-
-_manpages_rm  := $(addsuffix -rm,$(wildcard $(_manpages)))
-_man1pages_rm := $(filter %$(man1ext)-rm,$(_manpages_rm))
-_man2pages_rm := $(filter %$(man2ext)-rm,$(_manpages_rm))
-_man3pages_rm := $(filter %$(man3ext)-rm,$(_manpages_rm))
-_man4pages_rm := $(filter %$(man4ext)-rm,$(_manpages_rm))
-_man5pages_rm := $(filter %$(man5ext)-rm,$(_manpages_rm))
-_man6pages_rm := $(filter %$(man6ext)-rm,$(_manpages_rm))
-_man7pages_rm := $(filter %$(man7ext)-rm,$(_manpages_rm))
-_man8pages_rm := $(filter %$(man8ext)-rm,$(_manpages_rm))
 
 _mandirs_rmdir := $(addsuffix -rmdir,$(wildcard $(_mandirs)))
 _man1dir_rmdir := $(addsuffix -rmdir,$(wildcard $(_man1dir)))
@@ -168,6 +169,7 @@ uninstall_manX   := $(foreach x,$(MAN_SECTIONS),uninstall-man$(x))
 
 
 .SECONDEXPANSION:
+
 $(_manpages): $(DESTDIR)$(mandir)/man%: $(MANDIR)/man% | $$(@D)/.
 	$(info -	INSTALL	$@)
 	$(INSTALL_DATA) -T $< $@
