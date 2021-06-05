@@ -1492,10 +1492,10 @@ parameters of the KDF operation to be applied:
 .in +4n
 .EX
 struct keyctl_kdf_params {
-    char *hashname;     /* Hash algorithm name */
-    char *otherinfo;    /* SP800\-56A OtherInfo */
-    __u32 otherinfolen; /* Length of otherinfo data */
-    __u32 __spare[8];   /* Reserved */
+    char     *hashname;     /* Hash algorithm name */
+    char     *otherinfo;    /* SP800\-56A OtherInfo */
+    uint32_t  otherinfolen; /* Length of otherinfo data */
+    uint32_t  __spare[8];   /* Reserved */
 };
 .EE
 .in
