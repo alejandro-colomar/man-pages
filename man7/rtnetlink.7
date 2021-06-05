@@ -435,16 +435,16 @@ structure.
 struct ndmsg {
     unsigned char ndm_family;
     int           ndm_ifindex;  /* Interface index */
-    __u16         ndm_state;    /* State */
-    __u8          ndm_flags;    /* Flags */
-    __u8          ndm_type;
+    uint16_t      ndm_state;    /* State */
+    uint8_t       ndm_flags;    /* Flags */
+    uint8_t       ndm_type;
 };
 
 struct nda_cacheinfo {
-    __u32         ndm_confirmed;
-    __u32         ndm_used;
-    __u32         ndm_updated;
-    __u32         ndm_refcnt;
+    uint32_t      ndm_confirmed;
+    uint32_t      ndm_used;
+    uint32_t      ndm_updated;
+    uint32_t      ndm_refcnt;
 };
 .EE
 .IP
@@ -513,9 +513,9 @@ attributes.
 struct tcmsg {
     unsigned char    tcm_family;
     int              tcm_ifindex;   /* interface index */
-    __u32            tcm_handle;    /* Qdisc handle */
-    __u32            tcm_parent;    /* Parent qdisc */
-    __u32            tcm_info;
+    uint32_t         tcm_handle;    /* Qdisc handle */
+    uint32_t         tcm_parent;    /* Parent qdisc */
+    uint32_t         tcm_info;
 };
 .EE
 .TS
