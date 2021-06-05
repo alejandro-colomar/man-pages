@@ -74,8 +74,8 @@ a common part shared by all address families:
 .in +4n
 .EX
 struct sock_diag_req {
-    __u8 sdiag_family;
-    __u8 sdiag_protocol;
+    uint8_t sdiag_family;
+    uint8_t sdiag_protocol;
 };
 .EE
 .in
@@ -131,13 +131,13 @@ For UNIX domain sockets the request is represented in the following structure:
 .in +4n
 .EX
 struct unix_diag_req {
-    __u8    sdiag_family;
-    __u8    sdiag_protocol;
-    __u16   pad;
-    __u32   udiag_states;
-    __u32   udiag_ino;
-    __u32   udiag_show;
-    __u32   udiag_cookie[2];
+    uint8_t    sdiag_family;
+    uint8_t    sdiag_protocol;
+    uint16_t   pad;
+    uint32_t   udiag_states;
+    uint32_t   udiag_ino;
+    uint32_t   udiag_show;
+    uint32_t   udiag_cookie[2];
 };
 .EE
 .in
@@ -196,8 +196,8 @@ structure:
 .in +4n
 .EX
 struct unix_diag_vfs {
-    __u32 udiag_vfs_dev;
-    __u32 udiag_vfs_ino;
+    uint32_t udiag_vfs_dev;
+    uint32_t udiag_vfs_ino;
 };
 .EE
 .in
@@ -215,14 +215,14 @@ The inode number of the corresponding on-disk socket inode.
 .B UDIAG_SHOW_PEER
 The attribute reported in answer to this request is
 .BR UNIX_DIAG_PEER .
-The payload associated with this attribute is a __u32 value
+The payload associated with this attribute is a uint32_t value
 which is the peer's inode number.
 This attribute is reported for connected sockets only.
 .TP
 .B UDIAG_SHOW_ICONS
 The attribute reported in answer to this request is
 .BR UNIX_DIAG_ICONS .
-The payload associated with this attribute is an array of __u32 values
+The payload associated with this attribute is an array of uint32_t values
 which are inode numbers of sockets that has passed the
 .BR connect (2)
 call, but hasn't been processed with
@@ -239,8 +239,8 @@ structure:
 .in +4n
 .EX
 struct unix_diag_rqlen {
-    __u32 udiag_rqueue;
-    __u32 udiag_wqueue;
+    uint32_t udiag_rqueue;
+    uint32_t udiag_wqueue;
 };
 .EE
 .in
@@ -270,13 +270,13 @@ the amount of memory available for sending.
 .B UDIAG_SHOW_MEMINFO
 The attribute reported in answer to this request is
 .BR UNIX_DIAG_MEMINFO .
-The payload associated with this attribute is an array of __u32 values
+The payload associated with this attribute is an array of uint32_t values
 described below in the subsection "Socket memory information".
 .PP
 The following attributes are reported back without any specific request:
 .TP
 .BR UNIX_DIAG_SHUTDOWN
-The payload associated with this attribute is __u8 value which represents
+The payload associated with this attribute is uint8_t value which represents
 bits of
 .BR shutdown (2)
 state.
@@ -294,12 +294,12 @@ The response to a query for UNIX domain sockets is represented as an array of
 .in +4n
 .EX
 struct unix_diag_msg {
-    __u8    udiag_family;
-    __u8    udiag_type;
-    __u8    udiag_state;
-    __u8    pad;
-    __u32   udiag_ino;
-    __u32   udiag_cookie[2];
+    uint8_t    udiag_family;
+    uint8_t    udiag_type;
+    uint8_t    udiag_state;
+    uint8_t    pad;
+    uint32_t   udiag_ino;
+    uint32_t   udiag_cookie[2];
 };
 .EE
 .in
@@ -342,11 +342,11 @@ the request is represented in the following structure:
 .in +4n
 .EX
 struct inet_diag_req_v2 {
-    __u8    sdiag_family;
-    __u8    sdiag_protocol;
-    __u8    idiag_ext;
-    __u8    pad;
-    __u32   idiag_states;
+    uint8_t    sdiag_family;
+    uint8_t    sdiag_protocol;
+    uint8_t    idiag_ext;
+    uint8_t    pad;
+    uint32_t   idiag_states;
     struct inet_diag_sockid id;
 };
 .EE
@@ -359,12 +359,12 @@ is defined as follows:
 .in +4n
 .EX
 struct inet_diag_sockid {
-    __be16  idiag_sport;
-    __be16  idiag_dport;
-    __be32  idiag_src[4];
-    __be32  idiag_dst[4];
-    __u32   idiag_if;
-    __u32   idiag_cookie[2];
+    __be16     idiag_sport;
+    __be16     idiag_dport;
+    __be32     idiag_src[4];
+    __be32     idiag_dst[4];
+    uint32_t   idiag_if;
+    uint32_t   idiag_cookie[2];
 };
 .EE
 .in
@@ -394,16 +394,16 @@ as described below:
 .RS
 .TP
 .B INET_DIAG_TOS
-The payload associated with this attribute is a __u8 value
+The payload associated with this attribute is a uint8_t value
 which is the TOS of the socket.
 .TP
 .B INET_DIAG_TCLASS
-The payload associated with this attribute is a __u8 value
+The payload associated with this attribute is a uint8_t value
 which is the TClass of the socket.
 IPv6 sockets only.
 For LISTEN and CLOSE sockets, this is followed by
 .B INET_DIAG_SKV6ONLY
-attribute with associated __u8 payload value meaning whether the socket
+attribute with associated uint8_t payload value meaning whether the socket
 is IPv6-only or not.
 .TP
 .B INET_DIAG_MEMINFO
@@ -413,10 +413,10 @@ structure:
 .in +4n
 .EX
 struct inet_diag_meminfo {
-    __u32 idiag_rmem;
-    __u32 idiag_wmem;
-    __u32 idiag_fmem;
-    __u32 idiag_tmem;
+    uint32_t idiag_rmem;
+    uint32_t idiag_wmem;
+    uint32_t idiag_fmem;
+    uint32_t idiag_tmem;
 };
 .EE
 .in
@@ -438,7 +438,7 @@ The amount of data in send queue.
 .RE
 .TP
 .B INET_DIAG_SKMEMINFO
-The payload associated with this attribute is an array of __u32 values
+The payload associated with this attribute is an array of uint32_t values
 described below in the subsection "Socket memory information".
 .TP
 .B INET_DIAG_INFO
@@ -497,18 +497,18 @@ The response to a query for IPv4 or IPv6 sockets is represented as an array of
 .in +4n
 .EX
 struct inet_diag_msg {
-    __u8    idiag_family;
-    __u8    idiag_state;
-    __u8    idiag_timer;
-    __u8    idiag_retrans;
+    uint8_t    idiag_family;
+    uint8_t    idiag_state;
+    uint8_t    idiag_timer;
+    uint8_t    idiag_retrans;
 
     struct inet_diag_sockid id;
 
-    __u32   idiag_expires;
-    __u32   idiag_rqueue;
-    __u32   idiag_wqueue;
-    __u32   idiag_uid;
-    __u32   idiag_inode;
+    uint32_t   idiag_expires;
+    uint32_t   idiag_rqueue;
+    uint32_t   idiag_wqueue;
+    uint32_t   idiag_uid;
+    uint32_t   idiag_inode;
 };
 .EE
 .in
@@ -590,7 +590,7 @@ The payload associated with
 .B UNIX_DIAG_MEMINFO
 and
 .BR INET_DIAG_SKMEMINFO
-netlink attributes is an array of the following __u32 values:
+netlink attributes is an array of the following uint32_t values:
 .TP
 .B SK_MEMINFO_RMEM_ALLOC
 The amount of data in receive queue.
