@@ -155,13 +155,13 @@ the read buffer contains one or more of the following structures:
 .in +4n
 .EX
 struct fanotify_event_metadata {
-    __u32 event_len;
-    __u8 vers;
-    __u8 reserved;
-    __u16 metadata_len;
-    __aligned_u64 mask;
-    __s32 fd;
-    __s32 pid;
+    uint32_t    event_len;
+    uint8_t     vers;
+    uint8_t     reserved;
+    uint16_t    metadata_len;
+    uint64_t alignas(8) mask;
+    int32_t     fd;
+    int32_t     pid;
 };
 .EE
 .in
@@ -175,9 +175,9 @@ structure within the read buffer:
 .in +4n
 .EX
 struct fanotify_event_info_header {
-    __u8 info_type;
-    __u8 pad;
-    __u16 len;
+    uint8_t  info_type;
+    uint8_t  pad;
+    uint16_t len;
 };
 
 struct fanotify_event_info_fid {
@@ -566,8 +566,8 @@ fanotify file descriptor:
 .in +4n
 .EX
 struct fanotify_response {
-    __s32 fd;
-    __u32 response;
+    int32_t  fd;
+    uint32_t response;
 };
 .EE
 .in
