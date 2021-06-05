@@ -44,21 +44,21 @@ The sole argument to this operation should be a pointer to a single
 .in +4n
 .EX
 struct fsmap {
-    __u32 fmr_device;      /* Device ID */
-    __u32 fmr_flags;       /* Mapping flags */
-    __u64 fmr_physical;    /* Device offset of segment */
-    __u64 fmr_owner;       /* Owner ID */
-    __u64 fmr_offset;      /* File offset of segment */
-    __u64 fmr_length;      /* Length of segment */
-    __u64 fmr_reserved[3]; /* Must be zero */
+    uint32_t fmr_device;      /* Device ID */
+    uint32_t fmr_flags;       /* Mapping flags */
+    uint64_t fmr_physical;    /* Device offset of segment */
+    uint64_t fmr_owner;       /* Owner ID */
+    uint64_t fmr_offset;      /* File offset of segment */
+    uint64_t fmr_length;      /* Length of segment */
+    uint64_t fmr_reserved[3]; /* Must be zero */
 };
 
 struct fsmap_head {
-    __u32 fmh_iflags;       /* Control flags */
-    __u32 fmh_oflags;       /* Output flags */
-    __u32 fmh_count;        /* # of entries in array incl. input */
-    __u32 fmh_entries;      /* # of entries filled in (output) */
-    __u64 fmh_reserved[6];  /* Must be zero */
+    uint32_t fmh_iflags;       /* Control flags */
+    uint32_t fmh_oflags;       /* Output flags */
+    uint32_t fmh_count;        /* # of entries in array incl. input */
+    uint32_t fmh_entries;      /* # of entries filled in (output) */
+    uint64_t fmh_reserved[6];  /* Must be zero */
 
     struct fsmap fmh_keys[2];  /* Low and high keys for
                                   the mapping search */
