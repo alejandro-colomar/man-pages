@@ -89,9 +89,9 @@ structure, defined as:
 .in +4n
 .EX
 struct uffdio_api {
-    __u64 api;        /* Requested API version (input) */
-    __u64 features;   /* Requested features (input/output) */
-    __u64 ioctls;     /* Available ioctl() operations (output) */
+    uint64_t api;        /* Requested API version (input) */
+    uint64_t features;   /* Requested features (input/output) */
+    uint64_t ioctls;     /* Available ioctl() operations (output) */
 };
 .EE
 .in
@@ -296,14 +296,14 @@ structure, defined as:
 .in +4n
 .EX
 struct uffdio_range {
-    __u64 start;    /* Start of range */
-    __u64 len;      /* Length of range (bytes) */
+    uint64_t start;    /* Start of range */
+    uint64_t len;      /* Length of range (bytes) */
 };
 
 struct uffdio_register {
     struct uffdio_range range;
-    __u64 mode;     /* Desired mode of operation (input) */
-    __u64 ioctls;   /* Available ioctl() operations (output) */
+    uint64_t mode;     /* Desired mode of operation (input) */
+    uint64_t ioctls;   /* Available ioctl() operations (output) */
 };
 .EE
 .in
@@ -429,11 +429,11 @@ structure pointed to by
 .in +4n
 .EX
 struct uffdio_copy {
-    __u64 dst;    /* Destination of copy */
-    __u64 src;    /* Source of copy */
-    __u64 len;    /* Number of bytes to copy */
-    __u64 mode;   /* Flags controlling behavior of copy */
-    __s64 copy;   /* Number of bytes copied, or negated error */
+    uint64_t dst;    /* Destination of copy */
+    uint64_t src;    /* Source of copy */
+    uint64_t len;    /* Number of bytes to copy */
+    uint64_t mode;   /* Flags controlling behavior of copy */
+    int64_t  copy;   /* Number of bytes copied, or negated error */
 };
 .EE
 .in
@@ -546,8 +546,8 @@ structure pointed to by
 .EX
 struct uffdio_zeropage {
     struct uffdio_range range;
-    __u64 mode;     /* Flags controlling behavior of copy */
-    __s64 zeropage; /* Number of bytes zeroed, or negated error */
+    uint64_t mode;     /* Flags controlling behavior of copy */
+    int64_t  zeropage; /* Number of bytes zeroed, or negated error */
 };
 .EE
 .in
@@ -682,7 +682,7 @@ structure as shown below:
 .EX
 struct uffdio_writeprotect {
     struct uffdio_range range; /* Range to change write permission*/
-    __u64 mode;                /* Mode to change write permission */
+    uint64_t mode;             /* Mode to change write permission */
 };
 .EE
 .in
