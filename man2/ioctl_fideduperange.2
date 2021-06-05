@@ -60,11 +60,11 @@ This information is conveyed in a structure of the following form:
 .in +4n
 .EX
 struct file_dedupe_range {
-    __u64 src_offset;
-    __u64 src_length;
-    __u16 dest_count;
-    __u16 reserved1;
-    __u32 reserved2;
+    uint64_t src_offset;
+    uint64_t src_length;
+    uint16_t dest_count;
+    uint16_t reserved1;
+    uint32_t reserved2;
     struct file_dedupe_range_info info[0];
 };
 .EE
@@ -86,11 +86,11 @@ and the destination information is conveyed in the following form:
 .in +4n
 .EX
 struct file_dedupe_range_info {
-    __s64 dest_fd;
-    __u64 dest_offset;
-    __u64 bytes_deduped;
-    __s32 status;
-    __u32 reserved;
+    int64_t dest_fd;
+    uint64_t dest_offset;
+    uint64_t bytes_deduped;
+    int32_t status;
+    uint32_t reserved;
 };
 .EE
 .in
