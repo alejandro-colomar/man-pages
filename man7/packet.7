@@ -251,14 +251,14 @@ It is defined as
 .in +4n
 .EX
 struct tpacket_auxdata {
-    __u32 tp_status;
-    __u32 tp_len;      /* packet length */
-    __u32 tp_snaplen;  /* captured length */
-    __u16 tp_mac;
-    __u16 tp_net;
-    __u16 tp_vlan_tci;
-    __u16 tp_vlan_tpid; /* Since Linux 3.14; earlier, these
-                           were unused padding bytes */
+    uint32_t tp_status;
+    uint32_t tp_len;      /* packet length */
+    uint32_t tp_snaplen;  /* captured length */
+    uint16_t tp_mac;
+    uint16_t tp_net;
+    uint16_t tp_vlan_tci;
+    uint16_t tp_vlan_tpid; /* Since Linux 3.14; earlier, these
+                              were unused padding bytes */
 .\" commit a0cdfcf39362410d5ea983f4daf67b38de129408 added tp_vlan_tpid
 };
 .EE
