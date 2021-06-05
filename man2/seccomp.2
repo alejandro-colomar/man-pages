@@ -322,10 +322,10 @@ Each program must contain one or more BPF instructions:
 .in +4n
 .EX
 struct sock_filter {            /* Filter block */
-    __u16 code;                 /* Actual filter code */
-    __u8  jt;                   /* Jump true */
-    __u8  jf;                   /* Jump false */
-    __u32 k;                    /* Generic multiuse field */
+    uint16_t code;              /* Actual filter code */
+    uint8_t  jt;                /* Jump true */
+    uint8_t  jf;                /* Jump false */
+    uint32_t k;                 /* Generic multiuse field */
 };
 .EE
 .in
@@ -344,11 +344,11 @@ buffer of the following form:
 .in +4n
 .EX
 struct seccomp_data {
-    int   nr;                   /* System call number */
-    __u32 arch;                 /* AUDIT_ARCH_* value
+    int      nr;                /* System call number */
+    uint32_t arch;              /* AUDIT_ARCH_* value
                                    (see <linux/audit.h>) */
-    __u64 instruction_pointer;  /* CPU instruction pointer */
-    __u64 args[6];              /* Up to 6 system call arguments */
+    uint64_t instruction_pointer; /* CPU instruction pointer */
+    uint64_t args[6];           /* Up to 6 system call arguments */
 };
 .EE
 .in
