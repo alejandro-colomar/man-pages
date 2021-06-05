@@ -171,11 +171,11 @@ the payload follows.
 .in +4n
 .EX
 struct nlmsghdr {
-    __u32 nlmsg_len;    /* Length of message including header */
-    __u16 nlmsg_type;   /* Type of message content */
-    __u16 nlmsg_flags;  /* Additional flags */
-    __u32 nlmsg_seq;    /* Sequence number */
-    __u32 nlmsg_pid;    /* Sender port ID */
+    uint32_t nlmsg_len;    /* Length of message including header */
+    uint16_t nlmsg_type;   /* Type of message content */
+    uint16_t nlmsg_flags;  /* Additional flags */
+    uint32_t nlmsg_seq;    /* Sequence number */
+    uint32_t nlmsg_pid;    /* Sender port ID */
 };
 .EE
 .in
@@ -364,7 +364,7 @@ struct sockaddr_nl {
     sa_family_t     nl_family;  /* AF_NETLINK */
     unsigned short  nl_pad;     /* Zero */
     pid_t           nl_pid;     /* Port ID */
-    __u32           nl_groups;  /* Multicast groups mask */
+    uint32_t        nl_groups;  /* Multicast groups mask */
 };
 .EE
 .in
@@ -466,7 +466,7 @@ Join/leave a group specified by
 Retrieve all groups a socket is a member of.
 .I optval
 is a pointer to
-.B __u32
+.B uint32_t
 and
 .I optlen
 is the size of the array.
