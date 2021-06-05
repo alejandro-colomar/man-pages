@@ -211,88 +211,88 @@ for the event being created.
 .in +4n
 .EX
 struct perf_event_attr {
-    __u32 type;                 /* Type of event */
-    __u32 size;                 /* Size of attribute structure */
-    __u64 config;               /* Type\-specific configuration */
+    uint32_t type;                 /* Type of event */
+    uint32_t size;                 /* Size of attribute structure */
+    uint64_t config;               /* Type\-specific configuration */
 
     union {
-        __u64 sample_period;    /* Period of sampling */
-        __u64 sample_freq;      /* Frequency of sampling */
+        uint64_t sample_period;    /* Period of sampling */
+        uint64_t sample_freq;      /* Frequency of sampling */
     };
 
-    __u64 sample_type;  /* Specifies values included in sample */
-    __u64 read_format;  /* Specifies values returned in read */
+    uint64_t sample_type;  /* Specifies values included in sample */
+    uint64_t read_format;  /* Specifies values returned in read */
 
-    __u64 disabled       : 1,   /* off by default */
-          inherit        : 1,   /* children inherit it */
-          pinned         : 1,   /* must always be on PMU */
-          exclusive      : 1,   /* only group on PMU */
-          exclude_user   : 1,   /* don\(aqt count user */
-          exclude_kernel : 1,   /* don\(aqt count kernel */
-          exclude_hv     : 1,   /* don\(aqt count hypervisor */
-          exclude_idle   : 1,   /* don\(aqt count when idle */
-          mmap           : 1,   /* include mmap data */
-          comm           : 1,   /* include comm data */
-          freq           : 1,   /* use freq, not period */
-          inherit_stat   : 1,   /* per task counts */
-          enable_on_exec : 1,   /* next exec enables */
-          task           : 1,   /* trace fork/exit */
-          watermark      : 1,   /* wakeup_watermark */
-          precise_ip     : 2,   /* skid constraint */
-          mmap_data      : 1,   /* non\-exec mmap data */
-          sample_id_all  : 1,   /* sample_type all events */
-          exclude_host   : 1,   /* don\(aqt count in host */
-          exclude_guest  : 1,   /* don\(aqt count in guest */
-          exclude_callchain_kernel : 1,
-                                /* exclude kernel callchains */
-          exclude_callchain_user   : 1,
-                                /* exclude user callchains */
-          mmap2          :  1,  /* include mmap with inode data */
-          comm_exec      :  1,  /* flag comm events that are
-                                   due to exec */
-          use_clockid    :  1,  /* use clockid for time fields */
-          context_switch :  1,  /* context switch data */
-          write_backward :  1,  /* Write ring buffer from end
-                                   to beginning */
-          namespaces     :  1,  /* include namespaces data */
-          ksymbol        :  1,  /* include ksymbol events */
-          bpf_event      :  1,  /* include bpf events */
-          aux_output     :  1,  /* generate AUX records
-                                   instead of events */
-          cgroup         :  1,  /* include cgroup events */
-          text_poke      :  1,  /* include text poke events */
+    uint64_t disabled       : 1,  /* off by default */
+             inherit        : 1,  /* children inherit it */
+             pinned         : 1,  /* must always be on PMU */
+             exclusive      : 1,  /* only group on PMU */
+             exclude_user   : 1,  /* don\(aqt count user */
+             exclude_kernel : 1,  /* don\(aqt count kernel */
+             exclude_hv     : 1,  /* don\(aqt count hypervisor */
+             exclude_idle   : 1,  /* don\(aqt count when idle */
+             mmap           : 1,  /* include mmap data */
+             comm           : 1,  /* include comm data */
+             freq           : 1,  /* use freq, not period */
+             inherit_stat   : 1,  /* per task counts */
+             enable_on_exec : 1,  /* next exec enables */
+             task           : 1,  /* trace fork/exit */
+             watermark      : 1,  /* wakeup_watermark */
+             precise_ip     : 2,  /* skid constraint */
+             mmap_data      : 1,  /* non\-exec mmap data */
+             sample_id_all  : 1,  /* sample_type all events */
+             exclude_host   : 1,  /* don\(aqt count in host */
+             exclude_guest  : 1,  /* don\(aqt count in guest */
+             exclude_callchain_kernel : 1,
+                                  /* exclude kernel callchains */
+             exclude_callchain_user   : 1,
+                                  /* exclude user callchains */
+             mmap2          : 1,  /* include mmap with inode data */
+             comm_exec      : 1,  /* flag comm events that are
+                                     due to exec */
+             use_clockid    : 1,  /* use clockid for time fields */
+             context_switch : 1,  /* context switch data */
+             write_backward : 1,  /* Write ring buffer from end
+                                     to beginning */
+             namespaces     : 1,  /* include namespaces data */
+             ksymbol        : 1,  /* include ksymbol events */
+             bpf_event      : 1,  /* include bpf events */
+             aux_output     : 1,  /* generate AUX records
+                                     instead of events */
+             cgroup         : 1,  /* include cgroup events */
+             text_poke      : 1,  /* include text poke events */
 
-          __reserved_1   : 30;
+             __reserved_1   : 30;
 
     union {
-        __u32 wakeup_events;    /* wakeup every n events */
-        __u32 wakeup_watermark; /* bytes before wakeup */
+        uint32_t wakeup_events;    /* wakeup every n events */
+        uint32_t wakeup_watermark; /* bytes before wakeup */
     };
 
-    __u32     bp_type;          /* breakpoint type */
-
-    union {
-        __u64 bp_addr;          /* breakpoint address */
-        __u64 kprobe_func;      /* for perf_kprobe */
-        __u64 uprobe_path;      /* for perf_uprobe */
-        __u64 config1;          /* extension of config */
-    };
+    uint32_t     bp_type;          /* breakpoint type */
 
     union {
-        __u64 bp_len;           /* breakpoint length */
-        __u64 kprobe_addr;      /* with kprobe_func == NULL */
-        __u64 probe_offset;     /* for perf_[k,u]probe */
-        __u64 config2;          /* extension of config1 */
+        uint64_t bp_addr;          /* breakpoint address */
+        uint64_t kprobe_func;      /* for perf_kprobe */
+        uint64_t uprobe_path;      /* for perf_uprobe */
+        uint64_t config1;          /* extension of config */
     };
-    __u64 branch_sample_type;   /* enum perf_branch_sample_type */
-    __u64 sample_regs_user;     /* user regs to dump on samples */
-    __u32 sample_stack_user;    /* size of stack to dump on
+
+    union {
+        uint64_t bp_len;           /* breakpoint length */
+        uint64_t kprobe_addr;      /* with kprobe_func == NULL */
+        uint64_t probe_offset;     /* for perf_[k,u]probe */
+        uint64_t config2;          /* extension of config1 */
+    };
+    uint64_t branch_sample_type;   /* enum perf_branch_sample_type */
+    uint64_t sample_regs_user;     /* user regs to dump on samples */
+    uint32_t sample_stack_user;    /* size of stack to dump on
                                    samples */
-    __s32 clockid;              /* clock to use for time fields */
-    __u64 sample_regs_intr;     /* regs to dump on samples */
-    __u32 aux_watermark;        /* aux bytes before wakeup */
-    __u16 sample_max_stack;     /* max frames in callchain */
-    __u16 __reserved_2;         /* align to u64 */
+    int32_t  clockid;              /* clock to use for time fields */
+    uint64_t sample_regs_intr;     /* regs to dump on samples */
+    uint32_t aux_watermark;        /* aux bytes before wakeup */
+    uint16_t sample_max_stack;     /* max frames in callchain */
+    uint16_t __reserved_2;         /* align to u64 */
 
 };
 .EE
@@ -1508,12 +1508,12 @@ was specified to allow reading all events in a group at once:
 .in +4n
 .EX
 struct read_format {
-    u64 nr;            /* The number of events */
-    u64 time_enabled;  /* if PERF_FORMAT_TOTAL_TIME_ENABLED */
-    u64 time_running;  /* if PERF_FORMAT_TOTAL_TIME_RUNNING */
+    uint64_t nr;            /* The number of events */
+    uint64_t time_enabled;  /* if PERF_FORMAT_TOTAL_TIME_ENABLED */
+    uint64_t time_running;  /* if PERF_FORMAT_TOTAL_TIME_RUNNING */
     struct {
-        u64 value;     /* The value of the event */
-        u64 id;        /* if PERF_FORMAT_ID */
+        uint64_t value;     /* The value of the event */
+        uint64_t id;        /* if PERF_FORMAT_ID */
     } values[nr];
 };
 .EE
@@ -1588,36 +1588,36 @@ The structure of the first metadata mmap page is as follows:
 .in +4n
 .EX
 struct perf_event_mmap_page {
-    __u32 version;        /* version number of this structure */
-    __u32 compat_version; /* lowest version this is compat with */
-    __u32 lock;           /* seqlock for synchronization */
-    __u32 index;          /* hardware counter identifier */
-    __s64 offset;         /* add to hardware counter value */
-    __u64 time_enabled;   /* time event active */
-    __u64 time_running;   /* time event on CPU */
+    uint32_t version;        /* version number of this structure */
+    uint32_t compat_version; /* lowest version this is compat with */
+    uint32_t lock;           /* seqlock for synchronization */
+    uint32_t index;          /* hardware counter identifier */
+    int64_t  offset;         /* add to hardware counter value */
+    uint64_t time_enabled;   /* time event active */
+    uint64_t time_running;   /* time event on CPU */
     union {
-        __u64   capabilities;
+        uint64_t   capabilities;
         struct {
-            __u64 cap_usr_time / cap_usr_rdpmc / cap_bit0 : 1,
-                  cap_bit0_is_deprecated : 1,
-                  cap_user_rdpmc         : 1,
-                  cap_user_time          : 1,
-                  cap_user_time_zero     : 1,
+            uint64_t cap_usr_time / cap_usr_rdpmc / cap_bit0 : 1,
+                     cap_bit0_is_deprecated : 1,
+                     cap_user_rdpmc         : 1,
+                     cap_user_time          : 1,
+                     cap_user_time_zero     : 1,
         };
     };
-    __u16 pmc_width;
-    __u16 time_shift;
-    __u32 time_mult;
-    __u64 time_offset;
-    __u64 __reserved[120];   /* Pad to 1 k */
-    __u64 data_head;         /* head in the data section */
-    __u64 data_tail;         /* user\-space written tail */
-    __u64 data_offset;       /* where the buffer starts */
-    __u64 data_size;         /* data buffer size */
-    __u64 aux_head;
-    __u64 aux_tail;
-    __u64 aux_offset;
-    __u64 aux_size;
+    uint16_t pmc_width;
+    uint16_t time_shift;
+    uint32_t time_mult;
+    uint64_t time_offset;
+    uint64_t __reserved[120];   /* Pad to 1 k */
+    uint64_t data_head;         /* head in the data section */
+    uint64_t data_tail;         /* user\-space written tail */
+    uint64_t data_offset;       /* where the buffer starts */
+    uint64_t data_size;         /* data buffer size */
+    uint64_t aux_head;
+    uint64_t aux_tail;
+    uint64_t aux_offset;
+    uint64_t aux_size;
 
 }
 .EE
@@ -1926,9 +1926,9 @@ The mmap values start with a header:
 .in +4n
 .EX
 struct perf_event_header {
-    __u32   type;
-    __u16   misc;
-    __u16   size;
+    uint32_t   type;
+    uint16_t   misc;
+    uint16_t   size;
 };
 .EE
 .in
@@ -3298,9 +3298,9 @@ The argument is a pointer to a structure
 .in +4n
 .EX
 struct perf_event_query_bpf {
-    __u32    ids_len;
-    __u32    prog_cnt;
-    __u32    ids[0];
+    uint32_t    ids_len;
+    uint32_t    prog_cnt;
+    uint32_t    ids[0];
 };
 .EE
 .in
