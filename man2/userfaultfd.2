@@ -333,31 +333,31 @@ or an event required for the non-cooperative userfaultfd usage:
 .in +4n
 .EX
 struct uffd_msg {
-    __u8  event;            /* Type of event */
+    uint8_t  event;            /* Type of event */
     ...
     union {
         struct {
-            __u64 flags;    /* Flags describing fault */
-            __u64 address;  /* Faulting address */
+            uint64_t flags;    /* Flags describing fault */
+            uint64_t address;  /* Faulting address */
             union {
-                __u32 ptid; /* Thread ID of the fault */
+                uint32_t ptid; /* Thread ID of the fault */
             } feat;
         } pagefault;
 
-        struct {            /* Since Linux 4.11 */
-            __u32 ufd;      /* Userfault file descriptor
-                               of the child process */
+        struct {               /* Since Linux 4.11 */
+            uint32_t ufd;      /* Userfault file descriptor
+                                  of the child process */
         } fork;
 
-        struct {            /* Since Linux 4.11 */
-            __u64 from;     /* Old address of remapped area */
-            __u64 to;       /* New address of remapped area */
-            __u64 len;      /* Original mapping length */
+        struct {               /* Since Linux 4.11 */
+            uint64_t from;     /* Old address of remapped area */
+            uint64_t to;       /* New address of remapped area */
+            uint64_t len;      /* Original mapping length */
         } remap;
 
-        struct {            /* Since Linux 4.11 */
-            __u64 start;    /* Start address of removed area */
-            __u64 end;      /* End address of removed area */
+        struct {               /* Since Linux 4.11 */
+            uint64_t start;    /* Start address of removed area */
+            uint64_t end;      /* End address of removed area */
         } remove;
         ...
     } arg;
