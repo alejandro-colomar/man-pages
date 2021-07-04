@@ -263,11 +263,11 @@ domain, and accept connections:
 .\" unix.7 refers to this example.
 .PP
 .EX
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 #define MY_SOCK_PATH "/somepath"
 #define LISTEN_BACKLOG 50
