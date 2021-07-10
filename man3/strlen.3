@@ -66,6 +66,12 @@ T}	Thread safety	MT-Safe
 .sp 1
 .SH CONFORMING TO
 POSIX.1-2001, POSIX.1-2008, C89, C99, C11, SVr4, 4.3BSD.
+.SH NOTES
+.SS strnlen(3)
+If there is a known buffer size,
+it is probably better to use
+.BR strnlen (3),
+which can prevent some cases of buffer overrun/overflow.
 .SH SEE ALSO
 .BR string (3),
 .BR strnlen (3),

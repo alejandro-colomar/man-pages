@@ -58,5 +58,12 @@ T}	Thread safety	MT-Safe
 .sp 1
 .SH CONFORMING TO
 POSIX.1-2001, POSIX.1-2008, C99.
+.SH NOTES
+.SS wcsnlen(3)
+If there is a known buffer size,
+it is probably better to use
+.BR wcsnlen (3),
+which can prevent some cases of buffer overrun/overflow.
 .SH SEE ALSO
-.BR strlen (3)
+.BR strlen (3),
+.BR wcsnlen (3)
